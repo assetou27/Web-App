@@ -1,7 +1,7 @@
 export async function fetchInspirationalQuote() {
   try {
-    const targetUrl = 'https://api.quotable.io/random';
-    const response = await fetch(targetUrl);
+    const response = await fetch('http://api.quotable.io/quotes/random');
+    // const response = await fetch(targetUrl);
     console.log(response)
     if (!response.ok) {
       throw new Error('Failed to fetch quote');
@@ -9,7 +9,7 @@ export async function fetchInspirationalQuote() {
     const data = await response.json();
     console.log(data)
     // Return a formatted quote string: "quote content — author"
-    return `${data.content} — ${data.author}`;
+    return `${data[0].content} — ${data[0].author}`;
   } catch (error) {
     throw error;
   }
